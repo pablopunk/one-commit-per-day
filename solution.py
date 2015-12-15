@@ -6,7 +6,7 @@ def fib(num):
     if num < 2:
         cache[num] = num
     else:
-        # it gets the number from the cache if we already calculated it
+        # it gets the number from the cache if we already calculated it (get() doesn't return 0)
         cache[num] = cache.get(num, 0) or (fib(num-1) + fib(num-2))
 
     return cache[num]
