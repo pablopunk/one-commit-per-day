@@ -1,11 +1,14 @@
 
-def solution(num = 13195):
-    i = 2
-    while i * i < num:
-        while num % i == 0:
-            num /= i # we factor 'num' as long as it keeps being divided by 'i'
-        i += 1
-    return num # now it's gonna be the largest prime we reached (it couldn't be divided any more)
+def solution():
+    largest = 0
+    for i in range(100, 1000): # 3 digits 100-999
+        for j in range(i, 1000):
+            prod = i * j
+            s = str(prod)
+            if s == s[::-1]: # palindrome
+                if prod > largest:
+                    largest = prod # update if it's greater
+    return largest
 
 if __name__ == "__main__":
-    print "The largest prime factor is", solution(600851475143)
+    print "The largest prime factor is", solution()
