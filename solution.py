@@ -1,14 +1,12 @@
 
+def gcd(a, b): return b and gcd(b, a%b) or a # greater common divisor
+def lcm(a, b): return a*b / gcd(a,b)         # less common multiple
+
 def solution():
-    largest = 0
-    for i in range(100, 1000): # 3 digits 100-999
-        for j in range(i, 1000):
-            prod = i * j
-            s = str(prod)
-            if s == s[::-1]: # palindrome
-                if prod > largest:
-                    largest = prod # update if it's greater
-    return largest
+    sol = 1
+    for i in range(1, 21):
+        sol = lcm(sol, i)
+    return sol
 
 if __name__ == "__main__":
-    print "The largest prime factor is", solution()
+    print "Solution:", solution()
