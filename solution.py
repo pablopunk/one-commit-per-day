@@ -1,12 +1,12 @@
 
-def gcd(a, b): return b and gcd(b, a%b) or a # greater common divisor
-def lcm(a, b): return a*b / gcd(a,b)         # less common multiple
+def sumOfSquares(numbers = 10):
+    return sum(i*i for i in range(1, numbers+1))
 
-def solution():
-    sol = 1
-    for i in range(1, 21):
-        sol = lcm(sol, i)
-    return sol
+def squareOfSums(numbers = 10):
+    return sum(range(1, numbers+1))**2
+
+def solution(numbers = 10):
+    return squareOfSums(numbers) - sumOfSquares(numbers)
 
 if __name__ == "__main__":
-    print "Solution:", solution()
+    print "Solution:", solution(100)
