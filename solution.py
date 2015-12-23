@@ -1,13 +1,13 @@
 #!/usr/bin/python
 
-maxNum = 1000 # how much we are searching
-a = 0; b = 0; c = 0
+import prime
 
-for i in range(1, maxNum): # a
-    for j in range(i, maxNum): # b
-        k = 1000 - i - j # c from a+b+c=1000
-        if i*i + j*j == k*k:
-            a = i; b = j; c = k
-            break
+primes = []; i=0; sol=0
 
-print "Solution:",a*b*c
+while True:
+    new = prime.prime(i)
+    if new < 2000000: sol += new
+    else: break
+    i+=1
+
+print "Solution:", sol
