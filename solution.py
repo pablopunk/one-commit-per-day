@@ -1,15 +1,23 @@
 #!/usr/bin/python
 
-cache = { 1:1 } # n - size
+dim = 20
+paths = 0
+grid = [[1 for x in range(dim+1)] for x in range(dim+1)]
 
-def getcache(cache, n):
-    cache[n] = cache.get(n, 0) or (n%2==0 and 1+getcache(cache, n/2) or 1+getcache(cache, 3*n+1)) # calm down, you DO understand it
-    return cache[n]
+def right(x, y):
+	if x+1 <= dim: return 1 # can go right
+	return 0
 
-largest,ln = 0,0
-for n in range(13, 1000000):
-    new = getcache(cache, n)
-    if largest < new:
-        largest, ln = new, n # updates max
+def down(x, y):
+	if y+1 <= dim: return 1 # can go down
+	return 0
 
-print "Solution:",ln
+def explore(x, y):
+	global paths
+	if right(x, y): explore(x+1, y)
+	if down (x, y): explore(x, y+1)
+	if x == dim and y == x: paths += 1
+
+explore(0,0)
+
+print 'Grid %dx%d:' % (dim,dim) , 'Paths:', paths
