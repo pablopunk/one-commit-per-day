@@ -1,23 +1,12 @@
 #!/usr/bin/python
 
 dim = 20
-paths = 0
-grid = [[1 for x in range(dim+1)] for x in range(dim+1)]
 
-def right(x, y):
-	if x+1 <= dim: return 1 # can go right
-	return 0
+def factorial(n):
+    f = 1
+    for x in range(1, n+1): f *= x
+    return f
 
-def down(x, y):
-	if y+1 <= dim: return 1 # can go down
-	return 0
-
-def explore(x, y):
-	global paths
-	if right(x, y): explore(x+1, y)
-	if down (x, y): explore(x, y+1)
-	if x == dim and y == x: paths += 1
-
-explore(0,0)
+paths = factorial(dim*2) / factorial(dim) / factorial(dim)
 
 print 'Grid %dx%d:' % (dim,dim) , 'Paths:', paths
