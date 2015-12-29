@@ -1,5 +1,5 @@
 ### Current problem
 
-Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down, there are exactly 6 routes to the bottom right corner.
+2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
 
-How many such routes are there through a 20×20 grid?
+What is the sum of the digits of the number 2^1000?
