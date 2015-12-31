@@ -1,50 +1,29 @@
 #!/usr/bin/python
 
-words = [
-    (   1,  'one'      , ''     ),
-    (   2,  'two'      , ''     ),
-    (   3,  'three'    , ''     ),
-    (   4,  'four'     , ''     ),
-    (   5,  'five'     , ''     ),
-    (   6,  'six'      , ''     ),
-    (   7,  'seven'    , ''     ),
-    (   8,  'eight'    , ''     ),
-    (   9,  'nine'     , ''     ),
-    (  10,  'ten'      , ''     ),
-    (  11,  'eleven'   , ''     ),
-    (  12,  'twelve'   , ''     ),
-    (  13,  'thirteen' , ''     ),
-    (  14,  'fourteen' , ''     ),
-    (  15,  'fifteen'  , ''     ),
-    (  16,  'sixteen'  , ''     ),
-    (  17,  'seventeen', ''     ),
-    (  18,  'eighteen' , ''     ),
-    (  19,  'nineteen' , ''     ),
-    (  20,  'twenty'   , ''     ),
-    (  30,  'thirty'   , ''     ),
-    (  40,  'forty'    , ''     ),
-    (  50,  'fifty'    , ''     ),
-    (  60,  'sixty'    , ''     ),
-    (  70,  'seventy'  , ''     ),
-    (  80,  'eighty'   , ''     ),
-    (  90,  'ninety'   , ''     ),
-    ( 100,  'hundred'  , 'and'  ),
-    (1000,  'thousand' , 'and'  ),
+triangle = [
+    [75                                                        ],
+    [95, 64                                                    ],
+    [17, 47, 82                                                ],
+    [18, 35, 87, 10                                            ],
+    [20,  4, 82, 47, 65                                        ],
+    [19,  1, 23, 75,  3, 34                                    ],
+    [88,  2, 77, 73,  7, 63, 67                                ],
+    [99, 65,  4, 28,  6, 16, 70, 92                            ],
+    [41, 41, 26, 56, 83, 40, 80, 70, 33                        ],
+    [41, 48, 72, 33, 47, 32, 37, 16, 94, 29                    ],
+    [53, 71, 44, 65, 25, 43, 91, 52, 97, 51, 14                ],
+    [70, 11, 33, 28, 77, 73, 17, 78, 39, 68, 17, 57            ],
+    [91, 71, 52, 38, 17, 14, 91, 43, 58, 50, 27, 29, 48        ],
+    [63, 66,  4, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31    ],
+    [ 4, 62, 98, 27, 23,  9, 70, 98, 73, 93, 38, 53, 60,  4, 23],
 ]
 
-words.reverse();
+def path(triangle, n):
+    total = triangle[0][0]; col = 0
+    for lvl in range(1, len(triangle)):
+        if n % 2: col+=1 # odd
+        n /= 2
+        total += triangle[lvl][col]
+    return total
 
-def spell(n, words):
-    word = []
-    while n > 0:
-        for num in words:
-            if num[0] <= n:
-                div = n / num[0]
-                n = n % num[0]
-                if num[2]: word.append(' '.join(spell(div, words)))
-                word.append(num[1])
-                if num[2] and n: word.append(num[2])
-                break
-    return word
-
-print sum(len(word) for n in xrange(1,1001) for word in spell(n, words))
+print max(path(triangle, x) for x in range(0, 16384))
