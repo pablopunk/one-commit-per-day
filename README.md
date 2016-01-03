@@ -11,8 +11,12 @@ First commits were solutions of Project Euler, so you can find a solution in eac
 
 ![screenshot](https://s3.amazonaws.com/f.cl.ly/items/2u1e220V2h2v0V3u0U3u/screenshot.png?v=235599cd)
 
+### Sources
+ - [Project Euler](https://projecteuler.net/archives)
+ - [OpenBook Project](http://www.openbookproject.net/pybiblio/practice/wilson/)
+
 ### Building
 I'm using `python2.7` so you don't need anything else.
 
 ### Contributing
-I don't see the point in cloning or forking the repo, but I encourage you to start your own and set a goal of X days commiting.
+I don't see the point in cloning or forking the repo, but I encourage you to start your own and set a goal of X days commiting. Also it would be nice to send me little problems to solve each day.
