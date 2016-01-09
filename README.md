@@ -2,7 +2,7 @@
 
 ###### One commit per day keeps the doctor away.
 
-~~This repo was made to solve one problem each day in python. The problems I'm solving are very simple and take them from [here](https://projecteuler.net/archives). The solutions (to check results) can be found [here](http://www.s-anand.net/euler.html).~~ Now the goal is to make one commit each day but it doesn't need to solve a problem every day, just learning python.
+Now the goal is to make one commit each day but it doesn't need to solve a problem every day, just learning python.
 
 First commits were solutions of Project Euler, so you can find a solution in each commit. Now I just commit simple scripts organized in folders (like `tools/` or `games/`)
 
