@@ -15,6 +15,7 @@ First commits were solutions of Project Euler, so you can find a solution in eac
  - [Project Euler](https://projecteuler.net/archives)
  - [OpenBook Project](http://www.openbookproject.net/pybiblio/practice/wilson/)
  - [Programming Challenges](http://www.programming-challenges.com/pg.php?page=studenthome)
+ - Myself :D
 
 ### Building
 I'm using `python2.7` so you don't need anything else.
