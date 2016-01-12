@@ -61,7 +61,7 @@ def printMatrix(debug = False):
             if x == i and y == j:
                 if matrix[i][j]:
                     print "*",
-                    isbomb = True
+                    isbomb = True; debug = True
                 else:
                     print "@",
             else:
@@ -71,34 +71,8 @@ def printMatrix(debug = False):
         print ""
     return isbomb
 
-cls()
-print "\n\tWelcome to BombPath\n"
-print "\tUse WASD to move and reach the"
-print "\tlast cell of the matrix."
-print "\n\tChoose level:"
-print "\tBegginer(b)\tAdvanced(a)\tImpossible(i):",
-c = getch().lower()
-d = 0.02
-while c not in ['b', 'a', 'i']:
-    print "\n\n\tWhat's that?: ",
-    c = getch().lower()
-if c == 'a': d = 0.09
-elif c == 'i': d = 0.2
-
-init(d)
-
-def main_loop():
-    global x,y, debug
-    cls() # clear screen
-    if not debug: print ""
-    else: print "YOU ARE CHEATING :("
-    b = printMatrix(debug)
-    if x == dim-1 and y == dim-1:
-        print "\n\tYOU WON!"
-        print "\n\tWas it worth it?\n"; exit()
-    if b:
-        print "\n\tBOMB!"
-        print "\n\tTry again.\n"; exit()
+def keys():
+    global dim,x,y,debug
     k = getch().lower()
     if k == "w" and x > 0: x -= 1;
     elif k == "a" and y > 0: y -= 1;
@@ -106,5 +80,43 @@ def main_loop():
     elif k == "d" and y < dim-1: y += 1;
     elif k == "c": debug = not debug;
 
-while True:
-    main_loop()
+def main_loop():
+    global dim,x,y,debug
+    cls() # clear screen
+    if not debug: print ""
+    else: print "YOU ARE CHEATING :("
+    b = printMatrix(debug)
+    if x == dim-1 and y == dim-1:
+        print "\n\tYOU WON!"
+        print "\n\tWas it worth it?\n"
+        return True
+    if b:
+        print "\n\tBOMB!"
+        print "\n\tTry again.\n"
+        return True
+    keys() # input
+
+def main():
+    cls()
+    print "\n\tWelcome to BombPath\n"
+    print "\tUse WASD to move and reach the"
+    print "\tlast cell of the matrix."
+    print "\n\tChoose level:"
+    print "\tBegginer(b)\tAdvanced(a)\tImpossible(i):",
+    # TODO: Random mode: bombs are changing every time you move (1 cell each time), but you see them
+    c = getch().lower()
+    d = 0.02
+    while c not in ['b', 'a', 'i']:
+        print "\n\n\tWhat's that?: ",
+        c = getch().lower()
+    if c == 'a': d = 0.09
+    elif c == 'i': d = 0.2
+
+    init(d)
+
+    exit = False
+    while not exit:
+        exit = main_loop()
+
+if __name__ == '__main__':
+    main()
