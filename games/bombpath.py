@@ -16,9 +16,10 @@ try:
 except ImportError:
     print "You need getch() to run this program"
     sleep(0.2)
-    print "Trying to install it..."
+    print "Trying to install it with 'wget'..."
     sleep(0.2)
-    if system("bash -c 'su -c \"curl https://raw.githubusercontent.com/pablopunk/one-commit-per-day/master/tools/install_getch.sh && chmod +x install_getch.sh && ./install_getch.sh && rm install_getch.sh\"'"):
+    install = "wget https://raw.githubusercontent.com/pablopunk/one-commit-per-day/master/tools/install_getch.sh -O install_getch.sh && chmod +x install_getch.sh && ./install_getch.sh && rm install_getch.sh"
+    if system(install):
         print "\nError! Check one of this sources to get it:"
         print "\t- https://raw.githubusercontent.com/pablopunk/one-commit-per-day/master/tools/install_getch.sh"
         print "\t- https://pypi.python.org/pypi/getch"
@@ -89,7 +90,8 @@ init(d)
 def main_loop():
     global x,y, debug
     cls() # clear screen
-    print ""
+    if not debug: print ""
+    else: print "YOU ARE CHEATING :("
     b = printMatrix(debug)
     if x == dim-1 and y == dim-1:
         print "\n\tYOU WON!"
