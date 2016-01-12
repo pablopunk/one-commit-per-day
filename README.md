@@ -7,7 +7,8 @@ Now the goal is to make one commit each day but it doesn't need to solve a probl
 First commits were solutions of Project Euler, so you can find a solution in each commit. Now I just commit simple scripts organized in folders (like `tools/` or `games/`)
 
 ### Current goal
-  - 30 days
+  - ~~30 days~~
+  - 45 days
 
 ![screenshot](https://s3.amazonaws.com/f.cl.ly/items/2u1e220V2h2v0V3u0U3u/screenshot.png?v=235599cd)
 

@@ -7,16 +7,23 @@
 # final cell without touching any bomb
 #
 
+from os import system
+from random import random
+from time import sleep
+
 try:
     __import__("getch")
 except ImportError:
     print "You need getch() to run this program"
-    print "https://pypi.python.org/pypi/getch"
-    exit()
+    sleep(0.2)
+    print "Trying to install it..."
+    sleep(0.2)
+    if system("bash -c 'su -c \"curl https://raw.githubusercontent.com/pablopunk/one-commit-per-day/master/tools/install_getch.sh && chmod +x install_getch.sh && ./install_getch.sh && rm install_getch.sh\"'"):
+        print "\nError! Check one of this sources to get it:"
+        print "\t- https://raw.githubusercontent.com/pablopunk/one-commit-per-day/master/tools/install_getch.sh"
+        print "\t- https://pypi.python.org/pypi/getch"
+        exit()
 
-from os import system
-from random import random
-from time import sleep
 from getch import getch
 
 # clear screen
@@ -27,6 +34,7 @@ bomb_prob = 0
 dim = 0
 matrix = [[0 for x in range(dim)] for x in range(dim)]
 x,y = 0,0
+debug = False
 
 def bombs():
     global matrix,dim
@@ -57,7 +65,7 @@ def printMatrix(debug = False):
                     print "@",
             else:
                 if debug and matrix[i][j]:
-                    print "*",
+                    print "x",
                 else: print "·",
         print ""
     return isbomb
@@ -79,10 +87,10 @@ elif c == 'i': d = 0.2
 init(d)
 
 def main_loop():
-    global x,y
+    global x,y, debug
     cls() # clear screen
     print ""
-    b = printMatrix(False)
+    b = printMatrix(debug)
     if x == dim-1 and y == dim-1:
         print "\n\tYOU WON!"
         print "\n\tWas it worth it?\n"; exit()
@@ -94,6 +102,7 @@ def main_loop():
     elif k == "a" and y > 0: y -= 1;
     elif k == "s" and x < dim-1: x += 1;
     elif k == "d" and y < dim-1: y += 1;
+    elif k == "c": debug = not debug;
 
 while True:
     main_loop()
