@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 # Copyright Pablo Varela 2016
 #
 # This is a simple game where you have to
@@ -26,33 +28,37 @@ dim = 0
 matrix = [[0 for x in range(dim)] for x in range(dim)]
 x,y = 0,0
 
-# TODO: choose among 3 levels of dificulty
-# (b) beginner (a) advanced (i) impossible
-
-def init():
-    global dim, bomb_prob, matrix, x, y
-    bomb_prob = 0.1
-    dim = 20
-    matrix = [[0 for x in range(dim)] for x in range(dim)]
-    x,y = 0,0
-    # bombs
+def bombs():
+    global matrix,dim
     for i in range(dim):
         for j in range(dim):
             matrix[i][j] = (1 and random()<bomb_prob)
     # TODO: be sure there's a path to the end without bombs
     matrix[0][0] = 0
+    matrix[dim-1][dim-1] = 0
 
-def printMatrix():
+def init(d):
+    global dim, bomb_prob, matrix, x, y
+    bomb_prob = d
+    dim = 20
+    matrix = [[0 for x in range(dim)] for x in range(dim)]
+    x,y = 0,0
+    bombs()
+
+def printMatrix(debug = False):
     isbomb = False
     for i in range(dim):
         for j in range(dim):
             if x == i and y == j:
                 if matrix[i][j]:
-                    print "X",
+                    print "*",
                     isbomb = True
                 else:
                     print "@",
-            else: print "-",
+            else:
+                if debug and matrix[i][j]:
+                    print "*",
+                else: print "·",
         print ""
     return isbomb
 
@@ -60,15 +66,23 @@ cls()
 print "\n\tWelcome to BombPath\n"
 print "\tUse WASD to move and reach the"
 print "\tlast cell of the matrix."
-print "\tIt's not that easy"
-print "\n\t[PRESS ENTER]\n"
-getch()
+print "\n\tChoose level:"
+print "\tBegginer(b)\tAdvanced(a)\tImpossible(i):",
+c = getch().lower()
+d = 0.02
+while c not in ['b', 'a', 'i']:
+    print "\n\n\tWhat's that?: ",
+    c = getch().lower()
+if c == 'a': d = 0.09
+elif c == 'i': d = 0.2
 
-init()
+init(d)
 
-while True:
-    cls()
-    b = printMatrix()
+def main_loop():
+    global x,y
+    cls() # clear screen
+    print ""
+    b = printMatrix(False)
     if x == dim-1 and y == dim-1:
         print "\n\tYOU WON!"
         print "\n\tWas it worth it?\n"; exit()
@@ -80,3 +94,6 @@ while True:
     elif k == "a" and y > 0: y -= 1;
     elif k == "s" and x < dim-1: x += 1;
     elif k == "d" and y < dim-1: y += 1;
+
+while True:
+    main_loop()
