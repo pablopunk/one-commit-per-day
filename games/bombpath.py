@@ -36,15 +36,17 @@ dim = 0
 matrix = [[0 for x in range(dim)] for x in range(dim)]
 x,y = 0,0
 debug = False
+mode = "Begginer"
 
 def bombs():
-    global matrix,dim
+    global matrix,dim,x,y
     for i in range(dim):
         for j in range(dim):
             matrix[i][j] = (1 and random()<bomb_prob)
     # TODO: be sure there's a path to the end without bombs
-    matrix[0][0] = 0
+    matrix[x][y] = 0 # current player position (0,0 at beginning)
     matrix[dim-1][dim-1] = 0
+    # TODO: In random mode, move bombs just 1 cell to be easier
 
 def init(d):
     global dim, bomb_prob, matrix, x, y
@@ -81,11 +83,12 @@ def keys():
     elif k == "c": debug = not debug;
 
 def main_loop():
-    global dim,x,y,debug
+    global dim,x,y,debug,d,mode
     cls() # clear screen
-    if not debug: print ""
-    else: print "YOU ARE CHEATING :("
+    print "\nMode:",mode
+    if not debug and mode!="Random": print "YOU ARE CHEATING :("
     b = printMatrix(debug)
+    if mode == "Random": bombs() # reset bombs
     if x == dim-1 and y == dim-1:
         print "\n\tYOU WON!"
         print "\n\tWas it worth it?\n"
@@ -97,20 +100,21 @@ def main_loop():
     keys() # input
 
 def main():
+    global d,mode,debug
     cls()
     print "\n\tWelcome to BombPath\n"
     print "\tUse WASD to move and reach the"
     print "\tlast cell of the matrix."
-    print "\n\tChoose level:"
-    print "\tBegginer(b)\tAdvanced(a)\tImpossible(i):",
-    # TODO: Random mode: bombs are changing every time you move (1 cell each time), but you see them
+    print "\n\tBegginer(b)\n\tAdvanced(a)\n\tImpossible(i)\n\tRandom(r)"
+    print "\n\tChoose level:",
     c = getch().lower()
     d = 0.02
-    while c not in ['b', 'a', 'i']:
+    while c not in ['b', 'a', 'i', 'r']:
         print "\n\n\tWhat's that?: ",
         c = getch().lower()
-    if c == 'a': d = 0.09
-    elif c == 'i': d = 0.2
+    if c == 'a': d = 0.09; mode = "Advanced"
+    elif c == 'i': d = 0.2; mode = "Impossible"
+    elif c == 'r': d = 0.09; debug = True; mode = "Random"
 
     init(d)
 
