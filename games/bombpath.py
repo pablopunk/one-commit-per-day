@@ -46,7 +46,25 @@ def bombs():
     # TODO: be sure there's a path to the end without bombs
     matrix[x][y] = 0 # current player position (0,0 at beginning)
     matrix[dim-1][dim-1] = 0
-    # TODO: In random mode, move bombs just 1 cell to be easier
+
+def move_bomb(matrix, x, y):
+    a = int(random()*3)-1 # x and y can change -1,0,1
+    b = int(random()*3)-1 #
+    a += x
+    b += y
+    if a < 0 or a >= dim: a = x
+    if b < 0 or b >= dim: b = y
+    return a,b
+
+def move_bombs(matrix):
+    global dim
+    newmatrix = [[0 for x in range(dim)] for x in range(dim)]
+    for i in range(dim):
+        for j in range(dim):
+            if matrix[i][j]:
+                a,b = move_bomb(matrix,i,j)
+                newmatrix[a][b] = 1
+    return newmatrix
 
 def init(d):
     global dim, bomb_prob, matrix, x, y
@@ -56,7 +74,7 @@ def init(d):
     x,y = 0,0
     bombs()
 
-def printMatrix(debug = False):
+def printMatrix(matrix, debug = False):
     isbomb = False
     for i in range(dim):
         for j in range(dim):
@@ -80,15 +98,15 @@ def keys():
     elif k == "a" and y > 0: y -= 1;
     elif k == "s" and x < dim-1: x += 1;
     elif k == "d" and y < dim-1: y += 1;
-    elif k == "c": debug = not debug;
+    elif k == "c": debug = True;
 
 def main_loop():
-    global dim,x,y,debug,d,mode
+    global dim,x,y,debug,d,mode,matrix
     cls() # clear screen
     print "\nMode:",mode
-    if not debug and mode!="Random": print "YOU ARE CHEATING :("
-    b = printMatrix(debug)
-    if mode == "Random": bombs() # reset bombs
+    if debug and mode!="Random": print "YOU ARE CHEATING :("
+    b = printMatrix(matrix, debug)
+    if mode == "Random": matrix = move_bombs(matrix)
     if x == dim-1 and y == dim-1:
         print "\n\tYOU WON!"
         print "\n\tWas it worth it?\n"
@@ -100,7 +118,7 @@ def main_loop():
     keys() # input
 
 def main():
-    global d,mode,debug
+    global mode,debug
     cls()
     print "\n\tWelcome to BombPath\n"
     print "\tUse WASD to move and reach the"
