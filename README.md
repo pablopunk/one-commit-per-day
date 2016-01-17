@@ -2,9 +2,11 @@
 
 ###### One commit per day keeps the doctor away.
 
+First commits were solutions of Project Euler, so you can find a solution in each commit. Now I just commit simple scripts organized in folders (like `tools/` or `games/`).
+
 Now the goal is to make one commit each day but it doesn't need to solve a problem every day, just learning python.
 
-First commits were solutions of Project Euler, so you can find a solution in each commit. Now I just commit simple scripts organized in folders (like `tools/` or `games/`)
+Also, one day without committing on this repo doesn't mean I can't achieve the goal, cause I may be working on other repos.
 
 ### Current goal
   - ~~30 days~~
