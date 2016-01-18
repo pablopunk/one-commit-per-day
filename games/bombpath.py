@@ -16,9 +16,11 @@ try:
 except ImportError:
     print "You need getch() to run this program"
     sleep(0.2)
-    print "Trying to install it with 'wget'..."
+    print "Trying to install it with 'wget' or 'curl'..."
     sleep(0.2)
-    install = "wget https://raw.githubusercontent.com/pablopunk/one-commit-per-day/master/tools/install_getch.sh -O install_getch.sh && chmod +x install_getch.sh && ./install_getch.sh && rm install_getch.sh"
+    wget = "wget https://raw.githubusercontent.com/pablopunk/one-commit-per-day/master/tools/install_getch.sh -O install_getch.sh"
+    curl = "curl https://raw.githubusercontent.com/pablopunk/one-commit-per-day/master/tools/install_getch.sh -o install_getch.sh"
+    install = "((%s) || (%s)) && chmod +x install_getch.sh && ./install_getch.sh && rm install_getch.sh" % (wget,curl)
     if system(install):
         print "\nError! Check one of this sources to get it:"
         print "\t- https://raw.githubusercontent.com/pablopunk/one-commit-per-day/master/tools/install_getch.sh"
