@@ -85,7 +85,7 @@ def printMatrix(matrix, debug = False):
                     print "*",
                     isbomb = True; debug = True
                 else:
-                    print "@",
+                    print "&",
             else:
                 if debug and matrix[i][j]:
                     print "x",
