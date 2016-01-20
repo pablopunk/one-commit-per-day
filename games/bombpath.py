@@ -29,16 +29,20 @@ except ImportError:
 
 from getch import getch
 
-# clear screen
-def cls():
-    system("clear")
-
 bomb_prob = 0
 dim = 0
 matrix = [[0 for x in range(dim)] for x in range(dim)]
 x,y = 0,0
 debug = False
 mode = "Begginer"
+player = "@"
+cell   = "·"
+bomb   = "*"
+bomb2  = "x"
+
+# clear screen
+def cls():
+    system("clear")
 
 def bombs():
     global matrix,dim,x,y
@@ -82,25 +86,28 @@ def printMatrix(matrix, debug = False):
         for j in range(dim):
             if x == i and y == j:
                 if matrix[i][j]:
-                    print "*",
+                    print bomb,
                     isbomb = True; debug = True
                 else:
-                    print "&",
+                    print player,
             else:
                 if debug and matrix[i][j]:
-                    print "x",
-                else: print "·",
+                    print bomb2,
+                else: print cell,
         print ""
     return isbomb
 
 def keys():
     global dim,x,y,debug
+    moved = False
     k = getch().lower()
+    if k in ['w','a','s','d']: moved = True;
     if k == "w" and x > 0: x -= 1;
     elif k == "a" and y > 0: y -= 1;
     elif k == "s" and x < dim-1: x += 1;
     elif k == "d" and y < dim-1: y += 1;
     elif k == "c": debug = True;
+    return moved
 
 def main_loop():
     global dim,x,y,debug,d,mode,matrix
@@ -117,7 +124,8 @@ def main_loop():
         print "\n\tBOMB!"
         print "\n\tTry again.\n"
         return True
-    keys() # input
+    moved = keys() # input
+    while not moved: moved = keys() # if the player doesn't move...
 
 def main():
     global mode,debug
