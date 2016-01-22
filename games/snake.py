@@ -15,10 +15,12 @@ for i in range(3):
 pr(" Just kidding, there's no game\n")
 sleep(2)
 
-width = 10
-for i in range(width, 1000000):
-    n = i%width
-    for j in range(n):
-        print " ",
+w = 10
+s = 1
+n = 0
+for i in range(w, 1000000):
+    for j in range(n): print " ",
     print "|"
+    n += s
+    if not n%w: s *= -1
     sleep(0.05)
