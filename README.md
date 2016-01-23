@@ -23,5 +23,7 @@ Also, one day without committing on this repo doesn't mean I can't achieve the g
 ### Building
 I'm using `python2.7` so you don't need anything else.
 
+*There's one game (`games/bombpath.py`) where you do need an external module (getch) but it automatically downloads it if you don't have it. Keep in mind this only works if you are on Linux or OS X, as it runs wget/curl and executes a shell script.*
+
 ### Contributing
 I don't see the point in cloning or forking the repo, but I encourage you to start your own and set a goal of X days commiting. Also it would be nice to send me little problems to solve each day.
