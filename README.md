@@ -1,6 +1,8 @@
 ## One commit per day
 
-###### One commit per day keeps the doctor away.
+__*Goals reached. I may come back and commit sometimes but not once a day*__
+
+##### One commit per day keeps the doctor away.
 
 First commits were solutions of Project Euler, so you can find a solution in each commit. Now I just commit simple scripts organized in folders (like `tools/` or `games/`).
 
@@ -10,7 +12,7 @@ Also, one day without committing on this repo doesn't mean I can't achieve the g
 
 ### Current goal
   - ~~30 days~~
-  - 45 days
+  - ~~45 days~~
 
 ![screenshot](https://s3.amazonaws.com/f.cl.ly/items/2u1e220V2h2v0V3u0U3u/screenshot.png?v=235599cd)
 
