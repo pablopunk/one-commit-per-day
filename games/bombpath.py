@@ -94,7 +94,8 @@ def printMatrix(matrix, debug = False):
                 if debug and matrix[i][j]:
                     print bomb2,
                 else: print cell,
-        print ""
+        if i == dim-1: print "<- Try to reach this cell"
+        else: print ""
     return isbomb
 
 def keys():
