@@ -11,11 +11,12 @@
 N = 3
 M = 3
 K = 2
-n = 4
 node_count = 0
 nodes = []
 visited = []
 trees  = [[1,1], [2,2], [2,0], [3,1]]
+n = 0
+#trees = [[3,0], [0,3]]
 matrix = []
 adj_matrix = []
 last_tree = []
@@ -113,13 +114,14 @@ def fill_matrix():
 def remove_tree():
     global last_tree
     last_tree = trees.pop(0)
-    print "Removing tree ", last_tree
+    print "Removing tree", last_tree
 
 # initial setup
 def reset():
     print "Reseting"
-    global visited
+    global visited,n
     visited = []
+    n = len(trees)
     
     fill_matrix()
     assign_nodes_to_coords()
@@ -133,10 +135,8 @@ def main():
             print "-> Is achievable"
             remove_tree(); reset()
         else:
-            if not last_tree:
-                print "-> Never achievable"
-            else:
-                print "Not achievable when removing ", last_tree
+            if not last_tree:  print "-> Never achievable"
+            else: print "-> Not achievable when removing", last_tree
             break
 
 if __name__ == '__main__':
