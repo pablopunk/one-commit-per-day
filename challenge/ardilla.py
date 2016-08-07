@@ -118,7 +118,6 @@ def remove_tree():
 
 # initial setup
 def reset():
-    print "Reseting"
     global visited,n
     visited = []
     n = len(trees)
