@@ -1,4 +1,10 @@
-## One commit per day
+## Python scripts
+
+This repo was initially a challenge to make at least one commit per day during a whole month. After 45 days of commiting I stopped, but I keep the repo to commit some random scripts or challenges on python sometimes.
+
+Everything below this line belongs to the previous `Readme.md` but it can be updated with sources and stuff.
+
+---
 
 __*Goals reached. I may come back and commit sometimes but not once a day*__
 
